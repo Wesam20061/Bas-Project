@@ -1,5 +1,5 @@
 <!--
-	Auteur: Studentnaam
+	Auteur: Wesam Ali
 	Function: home page CRUD Klant
 -->
 <!DOCTYPE html>
@@ -17,20 +17,26 @@
 		<a href='../index.html'>Home</a><br>
 		<a href='insert.php'>Toevoegen nieuwe klant</a><br><br>
 	</nav>
-	
-<?php
 
-// Autoloader classes via composer
-require '../../vendor/autoload.php';
+	<?php
+	// ✅ Succesmelding na toevoegen
+	if (isset($_GET['success']) && $_GET['success'] == 1) {
+		echo "<p style='color: green; font-weight: bold;'>✅ Klant is succesvol toegevoegd!</p>";
+	}
+	?>
 
-use Bas\classes\Klant;
+	<?php
+	// Autoloader classes via composer
+	require '../../vendor/autoload.php';
 
-// Maak een object Klant
-$klant = new Klant;
+	use Bas\classes\Klant;
 
-// Start CRUD
-$klant->crudKlant();
+	// Maak een object Klant
+	$klant = new Klant;
 
-?>
+	// Start CRUD
+	$klant->crudKlant();
+	?>
+
 </body>
 </html>

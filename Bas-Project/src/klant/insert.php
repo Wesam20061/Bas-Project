@@ -1,44 +1,66 @@
 <?php
-// auteur: studentnaam
-// functie: insert class Klant
+// auteur: jouw naam
+// functie: klant toevoegen via formulier
 
-// Autoloader classes via composer
 require '../../vendor/autoload.php';
 use Bas\classes\Klant;
 
-if(isset($_POST["insert"]) && $_POST["insert"] == "Toevoegen"){
+$msg = "";
 
-		// Code insert klant
-} 
+// Als formulier is verzonden
+if (isset($_POST["insert"]) && $_POST["insert"] === "Toevoegen") {
+    $klant = new Klant();
+    $klant->setKlantNaam($_POST['klantnaam'] ?? '');
+    $klant->setKlantEmail($_POST['klantemail'] ?? '');
+    $klant->setKlantWoonplaats($_POST['klantwoonplaats'] ?? '');
+    $klant->setKlantAdres($_POST['klantadres'] ?? '');
+    $klant->setKlantPostcode($_POST['klantpostcode'] ?? '');
 
+    if ($klant->insertKlant()) {
+        header("Location: read.php?success=1");
+        exit;
+    } else {
+        $msg = "❌ Er is iets misgegaan bij het toevoegen.";
+    }
+}
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crud</title>
+    <title>Klant Toevoegen</title>
     <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 
-	<h1>CRUD Klant</h1>
-	<h2>Toevoegen</h2>
-	<form method="post">
-	<label for="nv">Klantnaam:</label>
-	<input type="text" id="nv" name="klantnaam" placeholder="Klantnaam" required/>
-	<br>   
-	<label for="an">Klantemail:</label>
-	<input type="text" id="an" name="klantemail" placeholder="Klantemail" required/>
-	<br><br>
-	<input type='submit' name='insert' value='Toevoegen'>
-	</form></br>
+<h1>Nieuwe klant toevoegen</h1>
 
-	<a href='read.php'>Terug</a>
+<?php if ($msg): ?>
+    <p><?= $msg ?></p>
+<?php endif; ?>
+
+<form method="post">
+    <label for="klantnaam">Naam:</label>
+    <input type="text" id="klantnaam" name="klantnaam" required><br>
+
+    <label for="klantemail">Email:</label>
+    <input type="email" id="klantemail" name="klantemail" required><br>
+
+    <label for="klantwoonplaats">Woonplaats:</label>
+    <input type="text" id="klantwoonplaats" name="klantwoonplaats"><br>
+
+    <label for="klantadres">Adres:</label>
+    <input type="text" id="klantadres" name="klantadres"><br>
+
+    <label for="klantpostcode">Postcode:</label>
+    <input type="text" id="klantpostcode" name="klantpostcode"><br><br>
+
+    <input type="submit" name="insert" value="Toevoegen">
+</form>
+
+<br>
+<a href="read.php">🔙 Terug naar overzicht</a>
 
 </body>
 </html>
-
-
-

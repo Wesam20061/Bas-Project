@@ -6,46 +6,41 @@ namespace Bas\classes;
 use PDO;
 use PDOException;
 
+// Configuratie laden
+require_once __DIR__ . '/config.php';
 
-require_once "config.php";
+class Database {
+    // Connectie wordt opgeslagen als statische eigenschap
+    protected static $conn = null;
 
-class Database{
-	// protected: binnen class en sub../classes
-	// static omdat de connectie bewaard blijft
-	protected static $conn = NULL;
-	
-	private $servername = SERVERNAME;
+    private $servername = SERVERNAME;
     private $username = USERNAME;
     private $password = PASSWORD;
-    private $dbname = DATABASE;
-	
-	// Methods
-	public function __construct(){
-		//self::$conn = null;	
-		// Test of de connectie al eerder gedaan is. Daarom static variabele
-		if (!self::$conn) {
-			try{
-				 self::$conn = new PDO ("mysql:host=$this->servername;
-						dbname=$this->dbname",
-						$this->username,
-						$this->password) ;
+    private $dbname   = DATABASE;
 
-				 self::$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION) ;
-				 self::$conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-				 //echo "Connectie is gelukt <br />" ;
-			}
+    // Constructor maakt de connectie aan (indien nog niet bestaand)
+    public function __construct() {
+        if (!self::$conn) {
+            try {
+                self::$conn = new PDO(
+                    "mysql:host={$this->servername};dbname={$this->dbname}",
+                    $this->username,
+                    $this->password
+                );
 
-			catch(PDOException $e){
-				 echo "Connectie mislukt: " . $e->getMessage() ;
-			}
-		} else {
-			//echo "Database is al geconnected<br>";
-		}
-	}
-	
-	public function getConnection(){
-		return self::$conn;
-	}
-	
+                // Zet foutafhandeling en fetch-mode
+                self::$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                self::$conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+
+                // echo "✅ Connectie succesvol";
+            } catch (PDOException $e) {
+                echo "❌ Connectie mislukt: " . $e->getMessage();
+            }
+        }
+    }
+
+    // Methode om de databaseconnectie op te halen
+    public function getConnection() {
+        return self::$conn;
+    }
 }
-?>

@@ -1,32 +1,38 @@
 <?php
-// auteur: studentnaam
-// functie: unitests class Klant
 
 use PHPUnit\Framework\TestCase;
 use Bas\classes\Klant;
 
-// Filename moet gelijk zijn aan de classname KlantTest
-class KlantTest extends TestCase{
-    
-	protected $klant;
-
-    protected function setUp(): void {
-        $this->klant = new Klant();
+class KlantTest extends TestCase
+{
+    public function testSetAndGetKlantNaam()
+    {
+        $klant = new Klant();
+        $klant->setKlantNaam("Piet");
+        $this->assertEquals("Piet", $klant->klantnaam);
     }
 
-	// Methods moeten starten met de naam test....
-	public function testgetKlanten(){
-		$klanten = $this->klant->getKlanten();
-        $this->assertIsArray($klanten);
-		$this->assertTrue(count($klanten) > 0, "Aantal moet groter dan 0 zijn");
-	}
+    public function testSetAndGetKlantEmail()
+    {
+        $klant = new Klant();
+        $klant->setKlantEmail("piet@example.com");
+        $this->assertEquals("piet@example.com", $klant->klantemail);
+    }
 
-	public function testGetKlant(){
-		$klantId = 1; // check of dit ook echt in de database bestaat!
-		$klant = $this->klant->getKlant($klantId);
-		$this->assertEquals($klantId, $klant['klantId']);
-	}
-	
+    public function testSetAndGetKlantWoonplaats()
+    {
+        $klant = new Klant();
+        $klant->setKlantWoonplaats("Rotterdam");
+        $this->assertEquals("Rotterdam", $klant->klantwoonplaats);
+    }
+
+    public function testInsertKlantReturnsTrue()
+    {
+        $klant = new Klant();
+        $klant->setKlantNaam("Unit Test");
+        $klant->setKlantEmail("unittest@example.com");
+        $klant->setKlantWoonplaats("Utrecht");
+
+        $this->assertTrue($klant->insertKlant(), "insertKlant() moet true teruggeven bij succesvolle insert");
+    }
 }
-	
-?>
