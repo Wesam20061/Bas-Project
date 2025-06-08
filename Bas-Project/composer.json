@@ -1,20 +1,5 @@
 {
-    "name": "Wesam/bas",
     "require-dev": {
-        "phpunit/phpunit": "^10.5"
-    },
-    "autoload": {
-        "psr-4": {
-            "Bas\\": "src/"
-        }
-        
-    },
-    "authors": [
-        {
-            "name": "Wesam Ali",
-            "email": "9021542@student.tcrmbo.nl"
-        }
-    ],
-    "require": {},
-    "include-path": ["include/"]
+        "phpunit/phpunit": "^11.5"
+    }
 }

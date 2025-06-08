@@ -1,38 +1,57 @@
 <?php
+// tests/KlantTest.php
 
 use PHPUnit\Framework\TestCase;
 use Bas\classes\Klant;
 
+require_once __DIR__ . '/../src/classes/Klant.php';
+require_once __DIR__ . '/../src/classes/Database.php';
+
 class KlantTest extends TestCase
 {
-    public function testSetAndGetKlantNaam()
+    private Klant $klant;
+
+    protected function setUp(): void
     {
-        $klant = new Klant();
-        $klant->setKlantNaam("Piet");
-        $this->assertEquals("Piet", $klant->klantnaam);
+        $this->klant = new Klant();
+
+        // Dummy testgegevens instellen
+        $this->klant->setKlantNaam('Test Naam');
+        $this->klant->setKlantEmail('test@example.com');
+        $this->klant->setKlantAdres('Teststraat 1');
+        $this->klant->setKlantPostcode('1234AB');
+        $this->klant->setKlantWoonplaats('Teststad');
     }
 
-    public function testSetAndGetKlantEmail()
+    public function testInsertKlant(): void
     {
-        $klant = new Klant();
-        $klant->setKlantEmail("piet@example.com");
-        $this->assertEquals("piet@example.com", $klant->klantemail);
+        $result = $this->klant->insertKlant();
+        $this->assertTrue($result, "InsertKlant zou true moeten retourneren");
     }
 
-    public function testSetAndGetKlantWoonplaats()
+    public function testGetKlanten(): void
     {
-        $klant = new Klant();
-        $klant->setKlantWoonplaats("Rotterdam");
-        $this->assertEquals("Rotterdam", $klant->klantwoonplaats);
+        $klanten = $this->klant->getKlanten();
+        $this->assertIsArray($klanten);
+        $this->assertNotEmpty($klanten);
     }
 
-    public function testInsertKlantReturnsTrue()
+    public function testGetKlantById(): void
     {
-        $klant = new Klant();
-        $klant->setKlantNaam("Unit Test");
-        $klant->setKlantEmail("unittest@example.com");
-        $klant->setKlantWoonplaats("Utrecht");
+        $laatsteKlant = $this->klant->getKlanten();
+        $laatsteId = end($laatsteKlant)['klantId'];
 
-        $this->assertTrue($klant->insertKlant(), "insertKlant() moet true teruggeven bij succesvolle insert");
+        $klant = $this->klant->getKlant($laatsteId);
+        $this->assertIsArray($klant);
+        $this->assertEquals('Test Naam', $klant['klantNaam']);
+    }
+
+    public function testDeleteKlant(): void
+    {
+        $laatsteKlant = $this->klant->getKlanten();
+        $laatsteId = end($laatsteKlant)['klantId'];
+
+        $result = $this->klant->deleteKlant($laatsteId);
+        $this->assertTrue($result, "deleteKlant moet true retourneren");
     }
 }
