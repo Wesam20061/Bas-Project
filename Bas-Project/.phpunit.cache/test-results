@@ -1,1 +1,1 @@
-{"version":1,"defects":{"KlantTest::testgetKlanten":5,"KlantTest::testGetKlant":5},"times":{"KlantTest::testgetKlanten":0.002,"KlantTest::testGetKlant":0.017}}
+{"version":1,"defects":{"KlantTest::testgetKlanten":5,"KlantTest::testGetKlant":5},"times":{"KlantTest::testgetKlanten":0.002,"KlantTest::testGetKlant":0.017,"KlantTest::testSetKlantNaam":0,"KlantTest::testSetKlantEmail":0.015,"KlantTest::testSetKlantAdres":0,"KlantTest::testSetKlantPostcode":0,"KlantTest::testSetKlantWoonplaats":0}}

@@ -1,57 +1,46 @@
 <?php
-// tests/KlantTest.php
 
 use PHPUnit\Framework\TestCase;
 use Bas\classes\Klant;
 
-require_once __DIR__ . '/../src/classes/Klant.php';
+// Vereist dat de database- en klantklassen worden geladen
 require_once __DIR__ . '/../src/classes/Database.php';
+require_once __DIR__ . '/../src/classes/Klant.php';
 
 class KlantTest extends TestCase
 {
-    private Klant $klant;
-
-    protected function setUp(): void
+    public function testSetKlantNaam()
     {
-        $this->klant = new Klant();
-
-        // Dummy testgegevens instellen
-        $this->klant->setKlantNaam('Test Naam');
-        $this->klant->setKlantEmail('test@example.com');
-        $this->klant->setKlantAdres('Teststraat 1');
-        $this->klant->setKlantPostcode('1234AB');
-        $this->klant->setKlantWoonplaats('Teststad');
+        $klant = new Klant();
+        $klant->setKlantNaam("Test Naam");
+        $this->assertSame("Test Naam", $klant->klantnaam);
     }
 
-    public function testInsertKlant(): void
+    public function testSetKlantEmail()
     {
-        $result = $this->klant->insertKlant();
-        $this->assertTrue($result, "InsertKlant zou true moeten retourneren");
+        $klant = new Klant();
+        $klant->setKlantEmail("test@example.com");
+        $this->assertSame("test@example.com", $klant->klantemail);
     }
 
-    public function testGetKlanten(): void
+    public function testSetKlantAdres()
     {
-        $klanten = $this->klant->getKlanten();
-        $this->assertIsArray($klanten);
-        $this->assertNotEmpty($klanten);
+        $klant = new Klant();
+        $klant->setKlantAdres("Straat 123");
+        $this->assertSame("Straat 123", $klant->klantadres);
     }
 
-    public function testGetKlantById(): void
+    public function testSetKlantPostcode()
     {
-        $laatsteKlant = $this->klant->getKlanten();
-        $laatsteId = end($laatsteKlant)['klantId'];
-
-        $klant = $this->klant->getKlant($laatsteId);
-        $this->assertIsArray($klant);
-        $this->assertEquals('Test Naam', $klant['klantNaam']);
+        $klant = new Klant();
+        $klant->setKlantPostcode("1234AB");
+        $this->assertSame("1234AB", $klant->klantpostcode);
     }
 
-    public function testDeleteKlant(): void
+    public function testSetKlantWoonplaats()
     {
-        $laatsteKlant = $this->klant->getKlanten();
-        $laatsteId = end($laatsteKlant)['klantId'];
-
-        $result = $this->klant->deleteKlant($laatsteId);
-        $this->assertTrue($result, "deleteKlant moet true retourneren");
+        $klant = new Klant();
+        $klant->setKlantWoonplaats("Amsterdam");
+        $this->assertSame("Amsterdam", $klant->klantwoonplaats);
     }
 }

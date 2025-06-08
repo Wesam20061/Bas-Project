@@ -1,5 +1,5 @@
 <?php
-// auteur: studentnaam
+// auteur: Wesam Ali
 // functie: definitie class Database
 namespace Bas\classes;
 

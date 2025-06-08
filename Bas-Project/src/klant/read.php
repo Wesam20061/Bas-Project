@@ -1,42 +1,39 @@
 <!--
-	Auteur: Wesam Ali
-	Function: home page CRUD Klant
+    Auteur: Wesam Ali
+    Functie: CRUD Klant overzichtspagina
 -->
 <!DOCTYPE html>
 <html lang="nl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crud</title>
+    <title>CRUD Klant</title>
     <link rel="stylesheet" href="../style.css">
 </head>
-
 <body>
-	<h1>CRUD Klant</h1>
-	<nav>
-		<a href='../index.html'>Home</a><br>
-		<a href='insert.php'>Toevoegen nieuwe klant</a><br><br>
-	</nav>
+    <h1>CRUD Klant</h1>
 
-	<?php
-	// ✅ Succesmelding na toevoegen
-	if (isset($_GET['success']) && $_GET['success'] == 1) {
-		echo "<p style='color: green; font-weight: bold;'>✅ Klant is succesvol toegevoegd!</p>";
-	}
-	?>
+    <nav>
+        <a href='../index.html'>Home</a><br>
+        <a href='insert.php'>Toevoegen nieuwe klant</a><br><br>
+    </nav>
 
-	<?php
-	// Autoloader classes via composer
-	require '../../vendor/autoload.php';
+    <?php
+    // ✅ Laat succesmelding zien na toevoegen
+    if (isset($_GET['success']) && $_GET['success'] == 1) {
+        echo "<p style='color: green; font-weight: bold;'>✅ Klant is succesvol toegevoegd!</p>";
+    }
+    ?>
 
-	use Bas\classes\Klant;
+    <?php
+    // ✅ Composer autoloader laden
+    require_once __DIR__ . '/../../vendor/autoload.php';
 
-	// Maak een object Klant
-	$klant = new Klant;
+    use Bas\classes\Klant;
 
-	// Start CRUD
-	$klant->crudKlant();
-	?>
-
+    // ✅ Object aanmaken en CRUD tonen
+    $klant = new Klant();
+    $klant->crudKlant();
+    ?>
 </body>
 </html>
