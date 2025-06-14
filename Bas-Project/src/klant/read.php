@@ -16,14 +16,23 @@
     <nav>
         <a href='../index.html'>Home</a><br>
         <a href='insert.php'>Toevoegen nieuwe klant</a><br><br>
+        <a href="search.php">Zoek klant</a>
+
     </nav>
 
-    <?php
-    // ✅ Laat succesmelding zien na toevoegen
-    if (isset($_GET['success']) && $_GET['success'] == 1) {
+   <?php
+// ✅ Laat succesmeldingen zien
+if (isset($_GET['success'])) {
+    if ($_GET['success'] == 1) {
         echo "<p style='color: green; font-weight: bold;'>✅ Klant is succesvol toegevoegd!</p>";
+    } elseif ($_GET['success'] == 2) {
+        echo "<p style='color: green; font-weight: bold;'>✅ Klant is succesvol gewijzigd!</p>";
+    } elseif ($_GET['success'] == 3) {
+        echo "<p style='color: green; font-weight: bold;'>🗑️ Klant is succesvol verwijderd!</p>";
     }
-    ?>
+}
+?>
+
 
     <?php
     // ✅ Composer autoloader laden
