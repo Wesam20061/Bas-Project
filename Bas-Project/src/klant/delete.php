@@ -6,20 +6,53 @@
 require '../../vendor/autoload.php';
 use Bas\classes\Klant;
 
-// Controleer of formulier is verzonden én klantId bestaat
-if (isset($_POST["verwijderen"]) && isset($_GET["klantId"])) {
-    
-    // Maak een object Klant
-    $klant = new Klant;
+$klant = new Klant();
 
-    // Verwijder klant op basis van klantId
-    $klantId = $_GET["klantId"];
+// Als gebruiker bevestigt om te verwijderen
+if (isset($_POST["verwijderen"]) && isset($_POST["klantId"])) {
+    $klantId = $_POST["klantId"];
     $klant->deleteKlant((int)$klantId);
 
-    // ✅ Redirect met succesmelding
     header("Location: read.php?success=3");
     exit;
+}
+
+// Als klantId via GET is meegegeven, toon klantgegevens en vraag bevestiging
+if (isset($_GET["klantId"])) {
+    $klantId = $_GET["klantId"];
+    $row = $klant->getKlant($klantId);
+
+    if ($row) {
+?>
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <title>Klant verwijderen</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <h1>Verwijder klant</h1>
+    <p>Weet je zeker dat je deze klant wilt verwijderen?</p>
+
+    <ul>
+        <li><strong>Naam:</strong> <?= htmlspecialchars($row['klantNaam']) ?></li>
+        <li><strong>Email:</strong> <?= htmlspecialchars($row['klantEmail']) ?></li>
+        <li><strong>Adres:</strong> <?= htmlspecialchars($row['klantAdres']) ?>, <?= htmlspecialchars($row['klantPostcode']) ?> <?= htmlspecialchars($row['klantWoonplaats']) ?></li>
+    </ul>
+
+    <form method="post" action="delete.php">
+        <input type="hidden" name="klantId" value="<?= $row['klantId'] ?>">
+        <button type="submit" name="verwijderen">✅ Verwijderen</button>
+        <a href="read.php">❌ Annuleer</a>
+    </form>
+</body>
+</html>
+<?php
+    } else {
+        echo "❌ Klant niet gevonden.";
+    }
 } else {
-    echo "<p style='color: red;'>❌ Geen klantId opgegeven of fout bij verwijderen.</p>";
+    echo "❌ Geen klantId opgegeven.";
 }
 ?>
