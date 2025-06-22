@@ -20,8 +20,8 @@ $lijst = $artikel->getArtikelen();
     <h1>CRUD Artikel</h1>
 
     <nav>
-        <a href='../../index.html'> Home</a><br>
-        <a href='insert.php'> Nieuw artikel toevoegen</a><br><br>
+        <a href='../index.html'>🏠 Home</a><br>
+        <a href='insert.php'>➕ Nieuw artikel toevoegen</a><br><br>
     </nav>
 
     <?php
@@ -36,10 +36,9 @@ $lijst = $artikel->getArtikelen();
         }
     }
 
-    // ✅ Tabel met alle artikelgegevens
+    // ✅ Tabel zonder zichtbare ID
     echo "<table border='1'>
         <tr>
-            <th>ID</th>
             <th>Omschrijving</th>
             <th>Inkoopprijs</th>
             <th>Verkoopprijs</th>
@@ -53,7 +52,6 @@ $lijst = $artikel->getArtikelen();
 
     foreach ($lijst as $row) {
         echo "<tr>
-            <td>" . htmlspecialchars($row['artId']) . "</td>
             <td>" . htmlspecialchars($row['artOmschrijving']) . "</td>
             <td>€ " . htmlspecialchars($row['artInkoop']) . "</td>
             <td>€ " . htmlspecialchars($row['artVerkoop']) . "</td>
@@ -63,14 +61,14 @@ $lijst = $artikel->getArtikelen();
             <td>" . htmlspecialchars($row['artLocatie']) . "</td>
             <td>
                 <form method='get' action='update.php'>
-                    <input type='hidden' name='artId' value='{$row['artId']}'>
-                    <button type='submit' name='update'>Wijzigen</button>
+                    <input type='hidden' name='artId' value='" . $row['artId'] . "'>
+                    <button type='submit'>Wizigen</button>
                 </form>
             </td>
             <td>
                 <form method='get' action='delete.php'>
-                    <input type='hidden' name='artId' value='{$row['artId']}'>
-                    <button type='submit' name='verwijderen'>Verwijderen</button>
+                    <input type='hidden' name='artId' value='" . $row['artId'] . "'>
+                    <button type='submit'>Verwijderen</button>
                 </form>
             </td>
         </tr>";
