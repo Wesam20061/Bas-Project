@@ -39,10 +39,10 @@ class Verkooporder extends Database {
         ]);
     }
 
-    // Setters
+    // Correcte Setters
     public function setKlantId($val) { $this->klantId = $val; }
     public function setArtId($val) { $this->artId = $val; }
-    public function setVerkOrdDatum($val) { $this->verkOrdDatum = $val; }
-    public function setVerkOrdBestAantal($val) { $this->verkOrdBestAantal = $val; }
-    public function setverkOrdStatus($val) { $this->verkOrdStatus = $val; }
+    public function setDatum($val) { $this->verkOrdDatum = $val; }
+    public function setAantal($val) { $this->verkOrdBestAantal = $val; }
+    public function setStatus($val) { $this->verkOrdStatus = $val; }
 }

@@ -3,10 +3,20 @@
 // functie: overzicht verkooporders tonen
 
 require_once __DIR__ . '/../../vendor/autoload.php';
+
 use Bas\classes\Verkooporder;
 
 $order = new Verkooporder();
 $lijst = $order->getVerkooporders();
+
+function vertaalStatus($code) {
+    return match((int)$code) {
+        1 => "In behandeling",
+        2 => "Verzonden",
+        3 => "Geannuleerd",
+        default => "Onbekend"
+    };
+}
 ?>
 
 <!DOCTYPE html>
@@ -22,6 +32,10 @@ $lijst = $order->getVerkooporders();
         <a href="../index.html">🏠 Home</a><br>
         <a href="insert.php">➕ Nieuwe verkooporder toevoegen</a><br><br>
     </nav>
+
+    <?php if (isset($_GET['success'])): ?>
+        <p style="color: green;">✅ Verkooporder succesvol toegevoegd!</p>
+    <?php endif; ?>
 
     <table border="1">
         <tr>
@@ -39,7 +53,7 @@ $lijst = $order->getVerkooporders();
             <td><?= htmlspecialchars($row['artOmschrijving']) ?></td>
             <td><?= htmlspecialchars($row['verkOrdDatum']) ?></td>
             <td><?= htmlspecialchars($row['verkOrdBestAantal']) ?></td>
-            <td><?= htmlspecialchars($row['verkOrdStatus']) ?></td>
+            <td><?= htmlspecialchars(vertaalStatus($row['verkOrdStatus'])) ?></td>
         </tr>
         <?php endforeach; ?>
     </table>
