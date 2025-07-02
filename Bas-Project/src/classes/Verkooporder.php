@@ -25,6 +25,14 @@ class Verkooporder extends Database {
         return $conn->query($sql)->fetchAll();
     }
 
+    public function getVerkooporder(int $verkOrdId): array {
+        $conn = $this->getConnection();
+        $sql = "SELECT * FROM {$this->table_name} WHERE verkOrdId = :verkOrdId";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute(['verkOrdId' => $verkOrdId]);
+        return $stmt->fetch() ?: [];
+    }
+
     public function insertVerkooporder(): bool {
         $conn = $this->getConnection();
         $sql = "INSERT INTO {$this->table_name} (klantId, artId, verkOrdDatum, verkOrdBestAantal, verkOrdStatus)
@@ -37,6 +45,33 @@ class Verkooporder extends Database {
             'verkOrdBestAantal' => $this->verkOrdBestAantal,
             'verkOrdStatus' => $this->verkOrdStatus
         ]);
+    }
+
+    public function updateVerkooporder(array $row): bool {
+        $conn = $this->getConnection();
+        $sql = "UPDATE {$this->table_name} SET
+                    klantId = :klantId,
+                    artId = :artId,
+                    verkOrdDatum = :verkOrdDatum,
+                    verkOrdBestAantal = :verkOrdBestAantal,
+                    verkOrdStatus = :verkOrdStatus
+                WHERE verkOrdId = :verkOrdId";
+        $stmt = $conn->prepare($sql);
+        return $stmt->execute([
+            'klantId' => $row['klantId'],
+            'artId' => $row['artId'],
+            'verkOrdDatum' => $row['verkOrdDatum'],
+            'verkOrdBestAantal' => $row['verkOrdBestAantal'],
+            'verkOrdStatus' => $row['verkOrdStatus'],
+            'verkOrdId' => $row['verkOrdId']
+        ]);
+    }
+
+    public function deleteVerkooporder(int $verkOrdId): bool {
+        $conn = $this->getConnection();
+        $sql = "DELETE FROM {$this->table_name} WHERE verkOrdId = :verkOrdId";
+        $stmt = $conn->prepare($sql);
+        return $stmt->execute(['verkOrdId' => $verkOrdId]);
     }
 
     // Correcte Setters

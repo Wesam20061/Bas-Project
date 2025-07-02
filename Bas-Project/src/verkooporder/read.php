@@ -34,7 +34,15 @@ function vertaalStatus($code) {
     </nav>
 
     <?php if (isset($_GET['success'])): ?>
-        <p style="color: green;">✅ Verkooporder succesvol toegevoegd!</p>
+        <?php
+            $msg = match ($_GET['success']) {
+                '1' => '✅ Verkooporder is succesvol toegevoegd!',
+                '2' => '✅ Verkooporder is succesvol gewijzigd!',
+                '3' => '🗑️ Verkooporder is succesvol verwijderd!',
+                default => null
+            };
+            if ($msg) echo "<p style='color: green; font-weight: bold;'>$msg</p>";
+        ?>
     <?php endif; ?>
 
     <table border="1">
@@ -45,6 +53,8 @@ function vertaalStatus($code) {
             <th>Datum</th>
             <th>Aantal</th>
             <th>Status</th>
+            <th>Wijzigen</th>
+            <th>Verwijderen</th>
         </tr>
         <?php foreach ($lijst as $row): ?>
         <tr>
@@ -54,8 +64,23 @@ function vertaalStatus($code) {
             <td><?= htmlspecialchars($row['verkOrdDatum']) ?></td>
             <td><?= htmlspecialchars($row['verkOrdBestAantal']) ?></td>
             <td><?= htmlspecialchars(vertaalStatus($row['verkOrdStatus'])) ?></td>
+            <td>
+                <!-- Link naar update.php met verkOrdId -->
+                <form method="get" action="update.php">
+                    <input type="hidden" name="verkOrdId" value="<?= $row['verkOrdId'] ?>">
+                    <button type="submit">✏️ Wijzigen</button>
+                </form>
+            </td>
+            <td>
+                <!-- Link naar delete.php met verkOrdId -->
+                <form method="get" action="delete.php">
+                    <input type="hidden" name="verkOrdId" value="<?= $row['verkOrdId'] ?>">
+                    <button type="submit">🗑️ Verwijderen</button>
+                </form>
+            </td>
         </tr>
         <?php endforeach; ?>
     </table>
 </body>
 </html>
+
