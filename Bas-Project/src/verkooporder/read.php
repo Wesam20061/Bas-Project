@@ -68,14 +68,14 @@ function vertaalStatus($code) {
                 <!-- Link naar update.php met verkOrdId -->
                 <form method="get" action="update.php">
                     <input type="hidden" name="verkOrdId" value="<?= $row['verkOrdId'] ?>">
-                    <button type="submit">✏️ Wijzigen</button>
+                    <button type="submit"> Wijzigen</button>
                 </form>
             </td>
             <td>
                 <!-- Link naar delete.php met verkOrdId -->
                 <form method="get" action="delete.php">
                     <input type="hidden" name="verkOrdId" value="<?= $row['verkOrdId'] ?>">
-                    <button type="submit">🗑️ Verwijderen</button>
+                    <button type="submit"> Verwijderen</button>
                 </form>
             </td>
         </tr>
