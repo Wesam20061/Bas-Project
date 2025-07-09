@@ -28,7 +28,8 @@ if (isset($_GET["artId"])) {
 <head>
     <meta charset="UTF-8">
     <title>Artikel verwijderen</title>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../style.css?v=1.0">
+
 </head>
 <body>
     <h1>Verwijder artikel</h1>

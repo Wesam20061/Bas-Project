@@ -14,14 +14,15 @@ $lijst = $artikel->getArtikelen();
 <head>
     <meta charset="UTF-8">
     <title>CRUD Artikel</title>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../style.css?v=1.0">
+
 </head>
 <body>
     <h1>CRUD Artikel</h1>
 
     <nav>
-        <a href='../index.html'>🏠 Home</a><br>
-        <a href='insert.php'>➕ Nieuw artikel toevoegen</a><br><br>
+        <a href='../index.html'> Home</a><br>
+        <a href='insert.php'> Nieuw artikel toevoegen</a><br><br>
     </nav>
 
     <?php

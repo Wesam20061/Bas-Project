@@ -24,13 +24,14 @@ function vertaalStatus($code) {
 <head>
     <meta charset="UTF-8">
     <title>Verkooporders</title>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../style.css?v=1.0">
+
 </head>
 <body>
     <h1>Verkooporders overzicht</h1>
     <nav>
-        <a href="../index.html">🏠 Home</a><br>
-        <a href="insert.php">➕ Nieuwe verkooporder toevoegen</a><br><br>
+        <a href="../index.html"> Home</a><br>
+        <a href="insert.php"> Nieuwe verkooporder toevoegen</a><br><br>
     </nav>
 
     <?php if (isset($_GET['success'])): ?>

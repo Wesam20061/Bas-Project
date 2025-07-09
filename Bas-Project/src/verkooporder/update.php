@@ -51,7 +51,8 @@ if (isset($_GET['verkOrdId'])) {
 <head>
     <meta charset="UTF-8">
     <title>Verkooporder wijzigen</title>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../style.css?v=1.0">
+
 </head>
 <body>
 <h1>Verkooporder wijzigen</h1>

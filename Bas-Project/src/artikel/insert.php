@@ -25,6 +25,8 @@ if (isset($_POST['insert'])) {
 <!DOCTYPE html>
 <html lang="nl">
 <head><title>Artikel toevoegen</title></head>
+<link rel="stylesheet" href="../style.css?v=1.0">
+
 <body>
 <h1>Artikel toevoegen</h1>
 <form method="post">

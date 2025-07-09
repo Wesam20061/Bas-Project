@@ -26,7 +26,8 @@ if (isset($_POST['zoek']) && !empty($_POST['klantnaam'])) {
 <head>
     <meta charset="UTF-8">
     <title>Klant zoeken</title>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../style.css?v=1.0">
+
 </head>
 <body>
     <h1>Zoek op Klantnaam</h1>

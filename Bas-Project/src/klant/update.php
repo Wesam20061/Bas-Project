@@ -38,6 +38,7 @@ if (isset($_GET['klantId'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css?v=1.0">
     <title>Klant Wijzigen</title>
     <link rel="stylesheet" href="../style.css">
 </head>

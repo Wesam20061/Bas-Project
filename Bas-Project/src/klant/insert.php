@@ -30,7 +30,8 @@ if (isset($_POST["insert"]) && $_POST["insert"] === "Toevoegen") {
 <head>
     <meta charset="UTF-8">
     <title>Klant Toevoegen</title>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../style.css?v=1.0">
+
 </head>
 <body>
 

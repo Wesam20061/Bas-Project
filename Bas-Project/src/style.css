@@ -1,8 +1,196 @@
-table, th, td {
-    background-color: aquamarine;
-    border: 1px solid black;
+/* ==== ANIMATED BACKGROUND ==== */
+body::before {
+    content: "";
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(1, 132, 255, 0.3), transparent 70%),
+                radial-gradient(circle at 70% 30%, rgba(0, 153, 255, 0.25), transparent 50%);
+    animation: pulseBackground 20s ease-in-out infinite;
+    z-index: -1;
+    opacity: 0.8;
 }
 
-th{
-    background-color: grey;    
+@keyframes pulseBackground {
+    0% {
+        transform: rotate(0deg) scale(1);
+    }
+    50% {
+        transform: rotate(180deg) scale(1.05);
+    }
+    100% {
+        transform: rotate(360deg) scale(1);
+    }
+}
+
+/* ==== BASISINSTELLINGEN ==== */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to bottom right, #f0faff, #e6f4ff);
+    color: #1a1a1a;
+    margin: 0;
+    padding: 30px;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* ==== TITELS ==== */
+h1 {
+    text-align: center;
+    color: #004f80;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+}
+
+/* ==== NAVIGATIE ==== */
+nav {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #ffffff;
+    background: linear-gradient(145deg, #00aaff, #007acc);
+    padding: 10px 22px;
+    margin: 5px;
+    border-radius: 10px;
+    display: inline-block;
+    font-weight: 600;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+    transition: all 0.3s ease-in-out;
+}
+
+nav a:hover {
+    background: linear-gradient(145deg, #007acc, #005fa3);
+    transform: scale(1.05);
+}
+
+/* ==== TABEL STIJL ==== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 10px 25px rgba(0, 153, 204, 0.15);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 14px 20px;
+    text-align: left;
+    border-bottom: 1px solid #e1e8ef;
+}
+
+th {
+    background-color: #00aaff;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+}
+
+tr:nth-child(even) {
+    background-color: #f4fbff;
+}
+
+tr:hover {
+    background-color: #e5f7ff;
+}
+
+/* ==== BUTTONS ==== */
+button, input[type="submit"], input[type="button"] {
+    background-color: #007acc;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+button:hover, input[type="submit"]:hover {
+    background-color: #005fa3;
+    transform: scale(1.05);
+}
+
+/* ==== FORMULIEREN ==== */
+form {
+    max-width: 600px;
+    margin: 30px auto;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 25px 35px;
+    border-radius: 14px;
+    box-shadow: 0 8px 20px rgba(0, 153, 204, 0.15);
+    backdrop-filter: blur(6px);
+}
+
+form label {
+    display: block;
+    margin: 12px 0 6px;
+    font-weight: bold;
+    color: #004060;
+}
+
+form input, form select, form textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    margin-bottom: 14px;
+    font-size: 1rem;
+    transition: 0.25s ease;
+}
+
+form input:focus, form select:focus {
+    border-color: #00b7ff;
+    outline: none;
+    box-shadow: 0 0 6px rgba(0,180,230,0.3);
+}
+
+/* ==== MELDINGEN ==== */
+.success {
+    background-color: #e0fff0;
+    color: #007a33;
+    padding: 14px;
+    border-radius: 8px;
+    font-weight: bold;
+    text-align: center;
+    border-left: 5px solid #31c200;
+    margin: 20px auto;
+    max-width: 650px;
+}
+
+.error {
+    background-color: #fff0f0;
+    color: #c10000;
+    padding: 14px;
+    border-radius: 8px;
+    font-weight: bold;
+    text-align: center;
+    border-left: 5px solid #ff4d4d;
+    margin: 20px auto;
+    max-width: 650px;
+}
+
+/* ==== RESPONSIVE ==== */
+@media (max-width: 768px) {
+    nav a {
+        display: block;
+        margin: 10px auto;
+        width: 90%;
+    }
+
+    form {
+        padding: 20px;
+    }
+
+    table, th, td {
+        font-size: 0.95rem;
+    }
 }

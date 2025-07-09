@@ -21,6 +21,7 @@ if (isset($_GET['artId'])) {
 <!DOCTYPE html>
 <html>
 <head><title>Artikel wijzigen</title></head>
+<link rel="stylesheet" href="../style.css?v=1.0">
 <body>
 <h1>Artikel wijzigen</h1>
 <form method="post">

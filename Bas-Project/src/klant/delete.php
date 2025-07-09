@@ -29,7 +29,8 @@ if (isset($_GET["klantId"])) {
 <head>
     <meta charset="UTF-8">
     <title>Klant verwijderen</title>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../style.css?v=1.0">
+
 </head>
 <body>
     <h1>Verwijder klant</h1>
